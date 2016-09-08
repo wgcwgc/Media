@@ -17,7 +17,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -137,34 +136,37 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 			case R.id.item1_search:
 				list.clear();
 				// 是否有外部存储设备
-//				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
-//				{
+				if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED))
+				{
 					pd = ProgressDialog.show(this ,"搜索" ,"正在搜索音乐文件..." ,true);
 					Toast.makeText(this ,"正在搜索音乐文件" ,Toast.LENGTH_LONG).show();
 					new Thread(new Runnable()
 					{
 						String [] ext =
-						{ ".mp3"};
-//						File file = Environment.getExternalStorageDirectory(); // sd卡根目录
-						
-						File file = getExternalFilesDir(".mp3");//  /data/data/your_package/ ;
-//						File file = getFilesDir(); //  /data/data/files/ ;
-//						File file = getCacheDir();//   /data/data/cache/ ;
-						
-//						File file = Environment.getRootDirectory();
+						{ "mp3" , "txt" , "vcf" , "apk" , "jpg"};
+						File file = Environment.getExternalStorageDirectory();// sd卡根目录
+
+						// File file = getExternalFilesDir(".mp3");//
+						// /data/data/your_package/;
+						// File file = getFilesDir(); // /data/data/files/ ;
+						// File file = getCacheDir();// /data/data/cache/ ;
+
+						// File file = Environment.getRootDirectory();
 
 						public void run()
 						{
+							System.out.println("1:" + file.toString());
 							search(file ,ext);
 							hander.sendEmptyMessage(SEARCH_MUSIC_SUCCESS);
 						}
 					}).start();
 
-//				}
-//				else
-//				{
-//					Toast.makeText(this ,"请插入外部存储设备.." ,Toast.LENGTH_LONG).show();
-//				}
+				}
+				else
+				{
+					Toast.makeText(this ,"请插入外部存储设备.." ,Toast.LENGTH_LONG).show();
+					System.out.println(Environment.getExternalStorageDirectory().toString());
+				}
 
 				break;
 			// 清除播放列表菜单
@@ -188,6 +190,7 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 		{
 			if(file.isDirectory())
 			{
+				System.out.println("2:" + file.toString());
 				File [] listFile = file.listFiles();
 				if(listFile != null)
 				{
@@ -205,6 +208,7 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 					if(filename.endsWith(ext[i]))
 					{
 						list.add(filename);
+						System.out.println("3:" + filename);
 						break;
 					}
 				}
@@ -291,13 +295,13 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 			start();
 		}
 		else
-			if(currIndex == list.size() && currIndex != 0)
+			if(currIndex == list.size())
 			{
-				Toast.makeText(this ,"当前已经是最后一首歌曲了" ,Toast.LENGTH_SHORT).show();
+				Toast.makeText(this ,"播放列表为空" ,Toast.LENGTH_SHORT).show();
 			}
 			else
 			{
-				Toast.makeText(this ,"播放列表为空" ,Toast.LENGTH_SHORT).show();
+				Toast.makeText(this ,"当前已经是最后一首歌曲了" ,Toast.LENGTH_SHORT).show();
 			}
 	}
 

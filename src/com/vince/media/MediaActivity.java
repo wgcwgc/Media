@@ -9,7 +9,6 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -33,7 +32,6 @@ public class MediaActivity extends Activity
 		{
 			public void onClick(View v )
 			{
-				playFromSrc();
 			}
 		});
 
@@ -62,6 +60,10 @@ public class MediaActivity extends Activity
 			}
 
 		});
+
+		// String str = Environment.getExternalStorageDirectory().toString();
+		// System.out.println(str);// /storage/sdcard
+
 	}
 
 	// 从本地扫描并播放
@@ -108,36 +110,44 @@ public class MediaActivity extends Activity
 		try
 		{
 			// 设置数据源
-			String str = Environment.getExternalStorageDirectory().toString();
-			System.out.println(str);//  /storage/sdcard
-			System.out.println("111111111111111111111111111111111111111111111111111");
-			String str1 = Environment.getExternalStorageState();
-			System.out.println(str1);// mounted
-			System.out.println("222222222222222222222222222222222222222222222222222");
-			String str2 = Environment.getDataDirectory().toString();
-			System.out.println(str2);// /data
-			System.out.println("333333333333333333333333333333333333333333333333333");
-			String str3 = Environment.getDownloadCacheDirectory().toString();
-			System.out.println(str3);//  /cache
-			System.out.println("444444444444444444444444444444444444444444444444444");
-			String str4 = Environment.getRootDirectory().toString();
-			System.out.println(str4);//  /system
-			System.out.println("555555555555555555555555555555555555555555555555555");
-			String str5 = Environment.getExternalStoragePublicDirectory(".mp3").toString();
-			System.out.println(str5);// /storage/sdcard/.mp3
-			System.out.println("666666666666666666666666666666666666666666666666666");
-			System.out.println(getFilesDir());//  /data/data/com.vince.media/files
-			System.out.println("777777777777777777777777777777777777777777777777777");
-			System.out.println(getFileStreamPath(".mp3"));//  /data/data/com.vince.media/files/.mp3
-			System.out.println("888888888888888888888888888888888888888888888888888");
-			System.out.println(getExternalCacheDir());// /storage/sdcard/Android/data/com.vince.media/cache
-			System.out.println("9999999999999999999999999999999999999999999999999999");
-			System.out.println(getExternalFilesDir(".mp3"));// /storage/sdcard/Android/data/com.vince.media/files/.mp3
-			System.out.println("0000000000000000000000000000000000000000000000000000");
-			System.out.println(getCacheDir());//  /data/data/com.vince.media/cache
-			System.out.println("111111111111111111111111111111111111111111111111111");
-			System.out.println(getLastNonConfigurationInstance());//  null
-			System.out.println("222222222222222222222222222222222222222222222222222");
+			// String str =
+			// Environment.getExternalStorageDirectory().toString();
+			// System.out.println(str);// /storage/sdcard
+			// System.out.println("111111111111111111111111111111111111111111111111111");
+			// String str1 = Environment.getExternalStorageState();
+			// System.out.println(str1);// mounted
+			// System.out.println("222222222222222222222222222222222222222222222222222");
+			// String str2 = Environment.getDataDirectory().toString();
+			// System.out.println(str2);// /data
+			// System.out.println("333333333333333333333333333333333333333333333333333");
+			// String str3 = Environment.getDownloadCacheDirectory().toString();
+			// System.out.println(str3);// /cache
+			// System.out.println("444444444444444444444444444444444444444444444444444");
+			// Log.d("LOG" ,"ceshi");
+			// String str4 = Environment.getRootDirectory().toString();
+			// System.out.println(str4);// /system
+			// System.out.println("555555555555555555555555555555555555555555555555555");
+			// String str5 =
+			// Environment.getExternalStoragePublicDirectory(".mp3").toString();
+			// System.out.println(str5);// /storage/sdcard/.mp3
+			// System.out.println("666666666666666666666666666666666666666666666666666");
+			// System.out.println(getFilesDir());//
+			// /data/data/com.vince.media/files
+			// System.out.println("777777777777777777777777777777777777777777777777777");
+			// System.out.println(getFileStreamPath(".mp3"));//
+			// /data/data/com.vince.media/files/.mp3
+			// System.out.println("888888888888888888888888888888888888888888888888888");
+			// System.out.println(getExternalCacheDir());//
+			// /storage/sdcard/Android/data/com.vince.media/cache
+			// System.out.println("9999999999999999999999999999999999999999999999999999");
+			// System.out.println(getExternalFilesDir(".mp3"));//
+			// /storage/sdcard/Android/data/com.vince.media/files/.mp3
+			// System.out.println("0000000000000000000000000000000000000000000000000000");
+			// System.out.println(getCacheDir());//
+			// /data/data/com.vince.media/cache
+			// System.out.println("111111111111111111111111111111111111111111111111111");
+			// System.out.println(getLastNonConfigurationInstance());// null
+			// System.out.println("222222222222222222222222222222222222222222222222222");
 
 			// mp.setDataSource(str);
 
@@ -157,7 +167,7 @@ public class MediaActivity extends Activity
 	protected void playFromSrc()
 	{
 		// 创建播放器对象，并绑定音频文件
-		MediaPlayer mp = MediaPlayer.create(this ,R.raw.honor);
+		MediaPlayer mp = MediaPlayer.create(this ,R.raw.a1);
 		mp.start();
 	}
 
