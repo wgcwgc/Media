@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
-import android.media.MediaPlayer.OnPreparedListener;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -16,7 +15,7 @@ import android.widget.Toast;
 
 public class MediaActivity extends Activity
 {
-	private Button btnSrc , btnSys , btnNet , btnLocal;
+	private Button btnSrc , btnSys , btnNet , btnLocal , btnRecorder;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState )
@@ -27,11 +26,23 @@ public class MediaActivity extends Activity
 		btnSys = (Button) findViewById(R.id.button2_sys);
 		btnNet = (Button) findViewById(R.id.button3_net);
 		btnLocal = (Button) findViewById(R.id.button4_local);
+		btnRecorder = (Button) findViewById(R.id.button5_Recorder);
+
+		btnRecorder.setOnClickListener(new OnClickListener()
+		{
+
+			public void onClick(View v )
+			{
+				getAudioRecorder();
+			}
+
+		});
 
 		btnSrc.setOnClickListener(new OnClickListener()
 		{
 			public void onClick(View v )
 			{
+				playFromSrc();
 			}
 		});
 
@@ -61,9 +72,14 @@ public class MediaActivity extends Activity
 
 		});
 
-		// String str = Environment.getExternalStorageDirectory().toString();
-		// System.out.println(str);// /storage/sdcard
+//		String str = Environment.getExternalStorageDirectory().toString();
+//		System.out.println(str);// /storage/sdcard
 
+	}
+
+	protected void getAudioRecorder()
+	{
+		startActivity(new Intent(this , Recorder.class));
 	}
 
 	// 从本地扫描并播放
@@ -76,27 +92,50 @@ public class MediaActivity extends Activity
 	protected void playFromNet()
 	{
 		MediaPlayer mp = new MediaPlayer();
-		// mp.reset()
+		String uriString = "http://bd.kuwo.cn/yinyue/599182?from=baidu";
+		// String urlString =
+		// "http://zhangmenshiting2.baidu.com/data2/music/9138619/9138619.mp3?xcode=dd0d0d0df7218eb9a79c7fd72cefb648&mid=0.18926789458694";
+		// mp.reset();
+		// try
+		// {
+		// mp.setDataSource(this ,Uri.parse(urlString));
+		// mp.prepareAsync();// 异步预处理
+		//
+		// // 监听异步预处理完成的事件
+		// Toast.makeText(this ,"网络连接异常1。。。" ,Toast.LENGTH_LONG).show();
+		// mp.setOnPreparedListener(new OnPreparedListener()
+		// {
+		// public void onPrepared(MediaPlayer mp )
+		// {
+		// Toast.makeText(MediaActivity.this ,"网络连接异常2。。。"
+		// ,Toast.LENGTH_LONG).show();
+		// mp.start();
+		// }
+		// });
+		// }
+		// catch(IOException e)
+		// {
+		// Toast.makeText(this ,"网络连接异常3。。。" ,Toast.LENGTH_LONG).show();
+		// }
+
 		try
 		{
-			mp.setDataSource(this ,Uri.parse("http://2.2.2.44:8080/a1.mp3"));
-			mp.prepareAsync();// 异步预处理
+			// mediaPlayer = new MediaPlayer();
+			// 通过Uri解析一个网络地址
 
-			// 监听异步预处理完成的事件
-			Toast.makeText(this ,"网络连接异常1。。。" ,Toast.LENGTH_LONG).show();
-			mp.setOnPreparedListener(new OnPreparedListener()
-			{
-				public void onPrepared(MediaPlayer mp )
-				{
-					Toast.makeText(MediaActivity.this ,"网络连接异常2。。。" ,Toast.LENGTH_LONG).show();
-					mp.start();
-				}
-			});
+			Uri uri = Uri.parse(uriString);
+			mp.setDataSource(this ,Uri.parse(uriString));
+			// mp.prepareAsync();// 异步预处理
+			// mp.prepare();
+			// 也可以直接通过这种方式装载网络上的音频文件
+			mp = MediaPlayer.create(this ,uri);
+			mp.start();
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			Toast.makeText(this ,"网络连接异常3。。。" ,Toast.LENGTH_LONG).show();
 		}
+
 	}
 
 	// 从系统文件中播放
@@ -167,7 +206,7 @@ public class MediaActivity extends Activity
 	protected void playFromSrc()
 	{
 		// 创建播放器对象，并绑定音频文件
-		MediaPlayer mp = MediaPlayer.create(this ,R.raw.a1);
+		MediaPlayer mp = MediaPlayer.create(this ,R.raw.honor);
 		mp.start();
 	}
 

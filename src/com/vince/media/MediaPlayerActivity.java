@@ -68,18 +68,18 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 		initView();
 	}
 
-	@Override
-	protected void onDestroy()
-	{
-		if(mp != null)
-		{
-			mp.stop();
-			flag = false;
-			// 释放资源
-			mp.release();
-		}
-		super.onDestroy();
-	}
+//	@Override
+//	protected void onDestroy()
+//	{
+//		if(mp != null)
+//		{
+//			mp.stop();
+//			flag = false;
+//			// 释放资源
+//			mp.release();
+//		}
+//		super.onDestroy();
+//	}
 
 	/**
 	 * 初始化UI组件
@@ -143,7 +143,8 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 					new Thread(new Runnable()
 					{
 						String [] ext =
-						{ "mp3" , "txt" , "vcf" , "apk" , "jpg"};
+						{ ".mp3", ".wav", ".wma", ".ogg", ".ape", ".acc" };
+						// { ".mp3" , ".txt" , ".vcf" , ".apk" , ".jpg"};
 						File file = Environment.getExternalStorageDirectory();// sd卡根目录
 
 						// File file = getExternalFilesDir(".mp3");//

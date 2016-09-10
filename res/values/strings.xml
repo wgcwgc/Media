@@ -6,5 +6,10 @@
     <string name="search">搜索本地音乐</string>
     <string name="clear_music_list">清除播放列表</string>
     <string name="exit">退出</string>
+    <string name="Recording">Android Audio Recording Application</string>
+    <string name="start">start</string>
+    <string name="stop">stop</string>
+    <string name="play">play</string>
+    <string name="recorder">recorder</string>
 
 </resources>

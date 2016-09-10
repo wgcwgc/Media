@@ -27,5 +27,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="扫描本地文件并播放" />
+    
+    <Button
+        android:id="@+id/button5_Recorder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="录音并播放" />
 
 </LinearLayout>
