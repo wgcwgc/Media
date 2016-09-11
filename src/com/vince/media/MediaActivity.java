@@ -1,13 +1,11 @@
 package com.vince.media;
 
-import java.io.IOException;
-
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -72,8 +70,8 @@ public class MediaActivity extends Activity
 
 		});
 
-//		String str = Environment.getExternalStorageDirectory().toString();
-//		System.out.println(str);// /storage/sdcard
+		// String str = Environment.getExternalStorageDirectory().toString();
+		// System.out.println(str);// /storage/sdcard
 
 	}
 
@@ -139,7 +137,7 @@ public class MediaActivity extends Activity
 	}
 
 	// 从系统文件中播放
-	@SuppressLint("SdCardPath")
+	// @SuppressLint("SdCardPath")
 	protected void playFromSys()
 	{
 		// MediaPlayer mp = MediaPlayer.create(this,
@@ -189,13 +187,14 @@ public class MediaActivity extends Activity
 			// System.out.println("222222222222222222222222222222222222222222222222222");
 
 			// mp.setDataSource(str);
-
-			mp.setDataSource("/sdcard/a1.mp3");
+			
+			mp.setDataSource(Environment.getExternalStorageDirectory().getPath() + "/a1.mp3");
+			
 			mp.prepare();// 预处理
 			mp.start();
 
 		}
-		catch(IOException e)
+		catch(Exception e)
 		{
 			Toast.makeText(this ,"找不到文件。。。" ,Toast.LENGTH_LONG).show();
 		}

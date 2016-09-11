@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.media.MediaPlayer;
@@ -104,8 +103,7 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	@SuppressLint("HandlerLeak")
-	private Handler hander = new Handler()
+	public Handler hander = new Handler()
 	{
 		public void handleMessage(android.os.Message msg )
 		{
@@ -235,7 +233,6 @@ public class MediaPlayerActivity extends Activity implements OnCompletionListene
 			return position;
 		}
 
-		@SuppressLint("InflateParams")
 		public View getView(int position , View convertView , ViewGroup parent )
 		{
 			if(convertView == null)

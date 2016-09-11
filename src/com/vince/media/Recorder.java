@@ -77,7 +77,7 @@ public class Recorder extends Activity
 		}
 		catch(Exception e)
 		{
-			Toast.makeText(this ,"bug ¡À" ,Toast.LENGTH_LONG).show();
+			Toast.makeText(this ,"«◊£∫Œ“ «bug" ,Toast.LENGTH_LONG).show();
 		}
 		start.setEnabled(false);
 		stop.setEnabled(true);
